@@ -6,11 +6,11 @@ INSERT INTO Equipe VALUES ('Procrastinators', 10);
 INSERT INTO Equipe VALUES ('Monkeys', 10);
 
 -- Match
-INSERT INTO Match (date_match,heure_debut,heure_fin) VALUES ('2001-10-01', '21:00:00', '22:30:00');
-INSERT INTO Match (date_match,heure_debut,heure_fin) VALUES ('2002-12-12', '20:00:00', '21:30:00');
-INSERT INTO Match (date_match,heure_debut,heure_fin) VALUES ('2003-03-17', '21:00:00', '22:30:00');
-INSERT INTO Match (date_match,heure_debut,heure_fin) VALUES ('2004-01-23', '17:00:00', '18:30:00');
-INSERT INTO Match (date_match,heure_debut,heure_fin) VALUES ('2005-04-07', '21:00:00', '22:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2001-10-01', '21:00:00', '22:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2002-12-12', '20:00:00', '21:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2003-03-17', '21:00:00', '22:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2004-01-23', '17:00:00', '18:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2005-04-07', '21:00:00', '22:30:00');
 
 -- Joueur
 
@@ -48,5 +48,9 @@ INSERT INTO Joue (score, classement, matchID, nomequipe) VALUES (3,2,1,'Squirrel
 -- Est_dans_Le_Buts
 
 INSERT INTO Est_Dans_Le_Buts (heure_debut, heure_fin, nb_buts_encaisses, numero_joueur, nomequipe, matchID) VALUES ('21:00:00', '22:30:00', 3, 1, 'Eagles', 1);
+
+-- Assiste
+
+INSERT INTO assiste VALUES (1, 3,'Eagles') 
 
 

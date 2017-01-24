@@ -59,7 +59,7 @@ CREATE TABLE But
 	numero		SMALLINT,
 	nomequipe	VARCHAR,
 	CONSTRAINT pk_but PRIMARY KEY (butID),
-	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID),
+	CONSTRAINT fk_but_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID),
 	CONSTRAINT fk_joueur FOREIGN KEY (numero, nomequipe) REFERENCES Joueur (numero, nomequipe)
 );
 
@@ -75,7 +75,7 @@ CREATE TABLE Est_Dans_Le_Buts
 	matchID 		INTEGER,
 	CONSTRAINT pk_Est_Dans_Le_Buts PRIMARY KEY (est_Dans_Le_ButsID),
 	CONSTRAINT fk_joueur FOREIGN KEY (numero_joueur,nomequipe) REFERENCES Goalie (numero,nomequipe),
-	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID)
+	CONSTRAINT fk_est_dans_le_buts_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID)
 );
 
 CREATE TABLE assiste 
@@ -85,16 +85,16 @@ CREATE TABLE assiste
 	nomequipe	VARCHAR,
 	CONSTRAINT pk_assiste PRIMARY KEY (butID,numero_joueur,nomequipe),
 	CONSTRAINT fk_but FOREIGN KEY (butID) REFERENCES But (butID),
-	CONSTRAINT fk_but FOREIGN KEY (numero,joueur) REFERENCES Joueur (numero, nomequipe)
-)
+	CONSTRAINT fk_joueur FOREIGN KEY (numero_joueur,nomequipe) REFERENCES Joueur (numero, nomequipe)
+);
 
 CREATE TABLE Joue
 (
 	joueID		SERIAL,
-	Score		VARCHAR, -- '1 - 0'	
-	Classement	SMALLINT,
+	score		VARCHAR,	
+	classement	SMALLINT,
 	matchID 	INTEGER,
 	nomequipe	VARCHAR,
-	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID),
+	CONSTRAINT fk_joue_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID),
 	CONSTRAINT fk_equipe FOREIGN KEY (nomequipe) REFERENCES Equipe(nomequipe)
-)
+);
