@@ -87,14 +87,3 @@ CREATE TABLE assiste
 	CONSTRAINT fk_but FOREIGN KEY (butID) REFERENCES But (butID),
 	CONSTRAINT fk_but FOREIGN KEY (numero,joueur) REFERENCES Joueur (numero, nomequipe)
 )
-
-CREATE TABLE Joue
-(
-	joueID		SERIAL,
-	Score		VARCHAR, -- '1 - 0'	
-	Classement	SMALLINT,
-	matchID 	INTEGER,
-	nomequipe	VARCHAR,
-	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID),
-	CONSTRAINT fk_equipe FOREIGN KEY (nomequipe) REFERENCES Equipe(nomequipe)
-)
