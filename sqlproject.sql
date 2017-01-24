@@ -1,3 +1,16 @@
+-- Database: mini-projet-sql
+
+-- DROP DATABASE "mini-projet-sql";
+
+CREATE DATABASE "mini-projet-sql"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.UTF-8'
+    LC_CTYPE = 'en_US.UTF-8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+    
 -- Dans ce cas vous ne devez faire que 3 requêtes sur les 6 et un seul déclencheur.
 
 --
@@ -10,10 +23,10 @@
 CREATE TABLE Match 
 (
 	matchID		SERIAL UNIQUE,
-	date_match	DATE
+	date_match	DATE,
 	heure_debut	TIME,
 	heure_fin	TIME,
-	CONSTRAINT 	pk_matchid PRIMARY KEY matchID
+	CONSTRAINT pk_matchid PRIMARY KEY (matchID)
 );
 
 -- La table Equipe avec les attributs initiales et la clé primaire 'nom' identifiant un equipe
@@ -21,8 +34,8 @@ CREATE TABLE Match
 CREATE TABLE Equipe 
 (
 	nomequipe		VARCHAR,
-	numJoueurs 	SMALLINT
-	CONSTRAINT pk_nom PRIMARY KEY nom
+	numJoueurs 		SMALLINT,
+	CONSTRAINT pk_nom PRIMARY KEY (nom)
 );
 
 
@@ -31,10 +44,10 @@ CREATE TABLE Joueur
 	numero 			SMALLINT,
 	nom 			VARCHAR,
 	prenom			VARCHAR,
-	datenaissance	DATE
+	datenaissance	DATE,
 	nomequipe		VARCHAR,
-	CONSTRAINT pk_numero PRIMARY KEY numero
-	FOREIGN KEY nomequipe REFERENCES 
+	CONSTRAINT pk_numero PRIMARY KEY (numero),
+	CONSTRAINT fk_nomequipe FOREIGN KEY (nomequipe) REFERENCES Equipe (nomequipe)
 );
 
 -- Car Goalie a les mêmes attributes que Joueur, plutôt que dupliquer des attributs, 
@@ -43,8 +56,8 @@ CREATE TABLE Joueur
 CREATE TABLE Goalie
 (
 	numero 			SMALLINT,
-	CONSTRAINT pk_numero PRIMARY KEY numero
-	FOREIGN KEY (numero) REFERENCES Joueur (numero)
+	CONSTRAINT pk_numero PRIMARY KEY (numero),
+	CONSTRAINT fk_numero FOREIGN KEY (numero) REFERENCES Joueur (numero)
 );
 
 -- Car relation 1 - * entre But et bb  b Match / Joueur
@@ -52,10 +65,10 @@ CREATE TABLE But
 (
 	heure 			TIME,
 	matchID		INTEGER,
-	numero_joueur	SMALLINT
-	CONSTRAINT pk_But 				PRIMARY KEY 		(heure, matchID, numero_joueur)
-	FOREIGN KEY fk_matchID 			REFERENCES 			Match(matchID)
-	FOREIGN KEY fk_numero_joueur 	REFERENCES 			Joueur(numero_joueur)
+	numero_joueur	SMALLINT,
+	CONSTRAINT pk_But PRIMARY KEY (heure, matchID, numero_joueur),
+	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID),
+	CONSTRAINT fk_numero_joueur FOREIGN KEY (numero_joueur) REFERENCES Joueur(numero_joueur)
 );
 
 CREATE TABLE Est_Dans_Le_Buts
@@ -65,20 +78,10 @@ CREATE TABLE Est_Dans_Le_Buts
 	nb_buts_encaisses	SMALLINT,
 	numero_joueur		SMALLINT,
 	matchID 			INTEGER,
-	CONSTRAINT pk_Est_Dans_Le_Buts	PRIMARY KEY (heure_debut, numero_joueur, matchID)
-	FOREIGN KEY fk_numero_Joueur 	FOREIGN KEY REFERENCES 
-	FOREIGN KEY fk_matchID	 		FOREIGN KEY REFERENCES 
+	CONSTRAINT pk_Est_Dans_Le_Buts	PRIMARY KEY (heure_debut, numero_joueur, matchID),
+	CONSTRAINT numero_joueur FOREIGN KEY (numero_Joueur) REFERENCES Joueur (numero),
+	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID)
 );
 
-CREATE TABLE Joue 
-(
-	score		VARCHAR,
-	classement	SMALLINT,
-	matchID 	INTEGER,
-	Equipe
-);
-
-
-
-
+TODO: Increase primary key joueur
 
