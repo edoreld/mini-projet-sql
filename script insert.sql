@@ -1,3 +1,5 @@
+SET datestyle = "ISO, DMY";
+
 -- Equipe
 INSERT INTO Equipe VALUES ('Squirrels', 10);
 INSERT INTO Equipe VALUES ('Eagles', 10);
@@ -6,11 +8,11 @@ INSERT INTO Equipe VALUES ('Procrastinators', 10);
 INSERT INTO Equipe VALUES ('Monkeys', 10);
 
 -- Match
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2001-10-01', '21:00:00', '22:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2002-12-12', '20:00:00', '21:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2003-03-17', '21:00:00', '22:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2004-01-23', '17:00:00', '18:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES ('2005-04-07', '21:00:00', '22:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (1,'02-02-2001', '21:00:00', '22:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (2,'06-03-2002', '20:00:00', '21:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (3,'05-04-2003', '21:00:00', '22:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (4,'13-05-2004', '17:00:00', '18:30:00');
+INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (5,'12-06-2005', '21:00:00', '22:30:00');
 
 -- Joueur
 
@@ -34,16 +36,16 @@ INSERT INTO Goalie VALUES (1, 'Gladiators');
 -- But
 -- Consider adding a time constraint for the buts
 
-INSERT INTO But (heure,matchID,numero,nomequipe) VALUES ('21:00:01', 1, 1, 'Eagles');
-INSERT INTO But (heure,matchID,numero,nomequipe) VALUES ('21:15:01', 2, 3, 'Eagles');
-INSERT INTO But (heure,matchID,numero,nomequipe) VALUES ('21:15:01', 3, 1, 'Procrastinators');
-INSERT INTO But (heure,matchID,numero,nomequipe) VALUES ('17:23:01', 4, 6, 'Gladiators');
-INSERT INTO But (heure,matchID,numero,nomequipe) VALUES ('21:15:01', 5, 3, 'Monkeys');
+INSERT INTO But (butID,heure,matchID,numero,nomequipe) VALUES (1,'21:00:01', 1, 1, 'Eagles');
+INSERT INTO But (butID,heure,matchID,numero,nomequipe) VALUES (2,'21:15:01', 2, 3, 'Eagles');
+INSERT INTO But (butID,heure,matchID,numero,nomequipe) VALUES (3,'21:15:01', 3, 1, 'Procrastinators');
+INSERT INTO But (butID,heure,matchID,numero,nomequipe) VALUES (4,'17:23:01', 4, 6, 'Gladiators');
+INSERT INTO But (butID,heure,matchID,numero,nomequipe) VALUES (5,'21:15:01', 5, 3, 'Monkeys');
 
 -- Joue
 
-INSERT INTO Joue (score, classement, matchID, nomequipe) VALUES (4,1,1,'Eagles');
-INSERT INTO Joue (score, classement, matchID, nomequipe) VALUES (3,2,1,'Squirrels');
+INSERT INTO Joue (joueID,score, classement, matchID, nomequipe) VALUES (1,4,1,1,'Eagles');
+INSERT INTO Joue (joueID,score, classement, matchID, nomequipe) VALUES (2,3,2,1,'Squirrels');
 
 -- Est_dans_Le_Buts
 
@@ -51,6 +53,5 @@ INSERT INTO Est_Dans_Le_Buts (heure_debut, heure_fin, nb_buts_encaisses, numero_
 
 -- Assiste
 
-INSERT INTO assiste VALUES (1, 3,'Eagles') 
-
+INSERT INTO assiste VALUES (1, 3,'Eagles');
 
