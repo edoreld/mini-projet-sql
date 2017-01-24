@@ -9,7 +9,7 @@
 
 CREATE TABLE Match 
 (
-	matchID		SERIAL UNIQUE,
+	matchID		SERIAL,
 	date_match	DATE,
 	heure_debut	TIME,
 	heure_fin	TIME,
@@ -39,7 +39,8 @@ CREATE TABLE Joueur
 
 -- Car Goalie a les mêmes attributes que Joueur, plutôt que dupliquer des attributs, 
 -- on peut faire référence à Joueur dans la rélation Goalie par la clé primaire (numero, nomequipe). 
- 
+-- Goalie == Gardien
+
 CREATE TABLE Goalie
 (
 	numero 			SMALLINT,
@@ -49,28 +50,51 @@ CREATE TABLE Goalie
 );
 
 -- Car relation 1 - * entre But et bb  b Match / Joueur
+-- L'attribut heure n'set suffisant pour identifier un but, donc on ajoute un attribute butId qui sera la clé primaire
 CREATE TABLE But 
-(
+(	
+	butID		SERIAL,
 	heure 		TIME,
 	matchID		INTEGER,
-	numero_joueur	SMALLINT,
+	numero		SMALLINT,
 	nomequipe	VARCHAR,
-	CONSTRAINT pk_But PRIMARY KEY (heure, matchID, numero_joueur),
-	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID),
-	CONSTRAINT fk_joueur FOREIGN KEY (numero_joueur,nomequipe) REFERENCES Joueur(numero,nomequipe)
+	CONSTRAINT pk_but PRIMARY KEY (butID),
+	CONSTRAINT fk_but_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID),
+	CONSTRAINT fk_joueur FOREIGN KEY (numero, nomequipe) REFERENCES Joueur (numero, nomequipe)
 );
 
+-- Relation (* - *), on créeu ne nouvelle primaire est les clés primaires de rélations à côté seront les clés étrangères
 CREATE TABLE Est_Dans_Le_Buts
 (
+	est_dans_le_butsID	SERIAL,
 	heure_debut		TIME,
 	heure_fin		TIME,
 	nb_buts_encaisses	SMALLINT,
 	numero_joueur		SMALLINT,
 	nomequipe		VARCHAR,
 	matchID 		INTEGER,
-	CONSTRAINT pk_Est_Dans_Le_Buts	PRIMARY KEY (heure_debut, numero_joueur, nomequipe, matchID),
+	CONSTRAINT pk_Est_Dans_Le_Buts PRIMARY KEY (est_Dans_Le_ButsID),
 	CONSTRAINT fk_joueur FOREIGN KEY (numero_joueur,nomequipe) REFERENCES Goalie (numero,nomequipe),
-	CONSTRAINT fk_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID)
+	CONSTRAINT fk_est_dans_le_buts_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID)
 );
 
+CREATE TABLE assiste 
+(
+	butID		INTEGER,
+	numero_joueur	SMALLINT,
+	nomequipe	VARCHAR,
+	CONSTRAINT pk_assiste PRIMARY KEY (butID,numero_joueur,nomequipe),
+	CONSTRAINT fk_but FOREIGN KEY (butID) REFERENCES But (butID),
+	CONSTRAINT fk_joueur FOREIGN KEY (numero_joueur,nomequipe) REFERENCES Joueur (numero, nomequipe)
+);
 
+CREATE TABLE Joue
+(
+	joueID		SERIAL,
+	score		VARCHAR,	
+	classement	SMALLINT,
+	matchID 	INTEGER,
+	nomequipe	VARCHAR,
+	CONSTRAINT fk_joue_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID),
+	CONSTRAINT fk_equipe FOREIGN KEY (nomequipe) REFERENCES Equipe(nomequipe)
+);
