@@ -7,7 +7,7 @@
 -- Car on ne peut pas identifier un match uniquement par les trois attribus de la classe Match sur le diagramme UML, on ajoute
 -- un attribut matchID qui sera notre clé primaire. 
 
-CREATE TABLE Match 
+CREATE TABLE _Match 
 (
 	matchID		SERIAL,
 	date_match	DATE,
@@ -59,7 +59,7 @@ CREATE TABLE But
 	numero		SMALLINT,
 	nomequipe	VARCHAR,
 	CONSTRAINT pk_but PRIMARY KEY (butID),
-	CONSTRAINT fk_but_matchID FOREIGN KEY (matchID) REFERENCES Match(matchID),
+	CONSTRAINT fk_but_matchID FOREIGN KEY (matchID) REFERENCES _Match(matchID),
 	CONSTRAINT fk_joueur FOREIGN KEY (numero, nomequipe) REFERENCES Joueur (numero, nomequipe)
 );
 
@@ -86,7 +86,7 @@ CREATE TABLE Est_Dans_Le_Buts
 	nomequipe		VARCHAR,
 	matchID 		INTEGER,
 	CONSTRAINT pk_Est_Dans_Le_Buts PRIMARY KEY (matchID,numero_joueur,nomequipe),
-	CONSTRAINT fk_est_dans_le_buts_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID),
+	CONSTRAINT fk_est_dans_le_buts_matchID FOREIGN KEY (matchID) REFERENCES _Match (matchID),
 	CONSTRAINT fk_joueur FOREIGN KEY (numero_joueur,nomequipe) REFERENCES Gardien (numero,nomequipe)
 );
 
@@ -159,7 +159,7 @@ $BODY$
 BEGIN
 	UPDATE Joue SET score = score + 1 
 	WHERE matchID = NEW.matchID
-	AND equipe = NEW.equipe;
+	AND joue.nomequipe = NEW.nomequipe;
 	RETURN NEW;
 END;
 $BODY$ LANGUAGE 'plpgsql';

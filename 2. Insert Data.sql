@@ -26,12 +26,16 @@ INSERT INTO Joueur VALUES (5, 'Gladiators', 'Clarence', 'Fernandez', '17-08-1982
 INSERT INTO Joueur VALUES (6, 'Gladiators', 'Emilie', 'Colbert', '24-08-1983');
 INSERT INTO Joueur VALUES (1, 'Procrastinators', 'Donald', 'Trump', '22-08-1996');
 INSERT INTO Joueur VALUES (9, 'Eagles', 'Barack', 'Obama', '22-08-1996');
+INSERT INTO Joueur VALUES (1, 'Squirrels', 'May', 'Zoera', '18-08-1983');
+INSERT INTO Joueur VALUES (1, 'Monkeys', 'Hyrule', 'Link', '19-02-1988');
 
 -- Gardien
 
 INSERT INTO Gardien VALUES (1, 'Eagles');
 INSERT INTO Gardien VALUES (1, 'Procrastinators');
 INSERT INTO Gardien VALUES (1, 'Gladiators');
+INSERT INTO Gardien VALUES (1, 'Squirrels');
+INSERT INTO Gardien VALUES (1, 'Monkeys');
 
 -- But
 -- Consider adding a time constraint for the buts
@@ -49,7 +53,10 @@ INSERT INTO Joue (score, classement, matchID, nomequipe) VALUES (3,2,1,'Squirrel
 
 -- Est_dans_Le_Buts
 
-INSERT INTO Est_Dans_Le_Buts (heure_debut, heure_fin, nb_buts_encaisses, numero_joueur, nomequipe, matchID) VALUES ('21:00:00', '22:30:00', 3, 1, 'Eagles', 1);
+INSERT INTO Est_Dans_Le_Buts VALUES ('21:00:00', '22:30:00', 3, 1, 'Eagles', 1);
+INSERT INTO Est_Dans_Le_Buts VALUES ('22:00:00', '23:00:00', 4, 1, 'Gladiators', 1);
+INSERT INTO Est_Dans_Le_Buts VALUES ('22:00:00', '23:00:00', 4, 1, 'Squirrels', 1);
+INSERT INTO Est_Dans_Le_Buts VALUES ('22:00:00', '23:00:00', 4, 1, 'Procrastinators', 1);
 
 -- Assiste
 
