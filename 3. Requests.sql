@@ -1,11 +1,20 @@
--- Quel equipe a gagné plus nombre de matchs et le nombre de matchs gagnés dans le dernier mois
+ -- Travail individuel -> 3 requêtes demandées 
 
--- 2 first lines = select all teams that have won matches with the number of their matches won
+-- Requête qui retourne la liste d'équipes qui on joue dans l'année 2001
+-- La complexité de la requête est donnée par la jointure
 
+SELECT e.nomequipe FROM equipe AS e
+INNER JOIN Joue ON (e.nomequipe = joue.nomequipe) 
+INNER JOIN _Match on (_match.matchID = joue.matchID)
+WHERE EXTRACT('year' from _match.date_match) = 2001;
 
-SELECT j.Nom, j.Prenom 
-FROM Joueur j
-INNER JOIN equipe e1
-ON e1.nomequipe = j.nomequipe
-WHERE j.nomequipe = 'Eagles'
+-- Requête qui retourne la liste de gardiens qui n'ont pas encaisses aucun but
+
+SELECT nom, prenom FROM Joueur 
+INNER JOIN Gardien on (joueur.numero = gardien.numero AND joueur.nomequipe = gardien.nomequipe)
+EXCEPT
+SELECT nom,prenom FROM Joueur
+INNER JOIN Gardien on (joueur.numero = gardien.numero AND joueur.nomequipe = gardien.nomequipe)
+INNER JOIN Est_Dans_Le_Buts ON (gardien.numero = Est_Dans_Le_Buts.numero_joueur AND gardien.nomequipe = Est_Dans_Le_Buts.nomequipe)
+WHERE nb_buts_encaisses > 0
 
