@@ -7,12 +7,12 @@ INSERT INTO Equipe VALUES ('Gladiators', 10);
 INSERT INTO Equipe VALUES ('Procrastinators', 10);
 INSERT INTO Equipe VALUES ('Monkeys', 10);
 
--- Match
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (1,'02-02-2001', '21:00:00', '22:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (2,'06-03-2002', '20:00:00', '21:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (3,'05-04-2003', '21:00:00', '22:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (4,'13-05-2004', '17:00:00', '18:30:00');
-INSERT INTO Match (matchID,date_match,heure_debut,heure_fin) VALUES (5,'12-06-2005', '21:00:00', '22:30:00');
+-- _Match
+INSERT INTO _Match (matchID,date_match,heure_debut,heure_fin) VALUES (1,'02-02-2001', '21:00:00', '22:30:00');
+INSERT INTO _Match (matchID,date_match,heure_debut,heure_fin) VALUES (2,'06-03-2002', '20:00:00', '21:30:00');
+INSERT INTO _Match (matchID,date_match,heure_debut,heure_fin) VALUES (3,'05-04-2003', '21:00:00', '22:30:00');
+INSERT INTO _Match (matchID,date_match,heure_debut,heure_fin) VALUES (4,'13-05-2004', '17:00:00', '18:30:00');
+INSERT INTO _Match (matchID,date_match,heure_debut,heure_fin) VALUES (5,'12-06-2005', '21:00:00', '22:30:00');
 
 -- Joueur
 
@@ -64,3 +64,5 @@ INSERT INTO assiste VALUES (1, 3,'Eagles');
 
 -- Joue
 
+INSERT INTO JOUE VALUES (1, 2, 1, 'Eagles');
+INSERT INTO JOUE VALUES (1, 2, 2, 'Squirrels');

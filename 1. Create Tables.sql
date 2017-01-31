@@ -97,7 +97,7 @@ CREATE TABLE Joue
 	classement	SMALLINT,
 	nomequipe	VARCHAR,
 	CONSTRAINT pk_joue PRIMARY KEY (matchID, nomequipe),
-	CONSTRAINT fk_joue_matchID FOREIGN KEY (matchID) REFERENCES Match (matchID),
+	CONSTRAINT fk_joue_matchID FOREIGN KEY (matchID) REFERENCES _Match (matchID),
 	CONSTRAINT fk_equipe FOREIGN KEY (nomequipe) REFERENCES Equipe(nomequipe)
 );
 

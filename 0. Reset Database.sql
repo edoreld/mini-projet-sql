@@ -1,13 +1,4 @@
-TRUNCATE TABLE Match CASCADE;
-TRUNCATE TABLE Equipe CASCADE;
-TRUNCATE TABLE Joueur CASCADE;
-TRUNCATE TABLE Gardien CASCADE;
-TRUNCATE TABLE But CASCADE;
-TRUNCATE TABLE Est_Dans_Le_Buts CASCADE;
-TRUNCATE TABLE assiste CASCADE;
-TRUNCATE TABLE joue CASCADE;
-
-DROP TABLE Match CASCADE;
+DROP TABLE _Match CASCADE;
 DROP TABLE Equipe CASCADE;
 DROP TABLE joueur CASCADE;
 DROP TABLE Gardien CASCADE;
@@ -15,7 +6,3 @@ DROP TABLE But CASCADE;
 DROP TABLE est_dans_le_buts CASCADE;
 DROP TABLE assiste CASCADE;
 DROP TABLE joue CASCADE;
-
-DROP TRIGGER un_match_un_equipe_trois_gardiens_coherence on est_dans_le_buts;
-DROP TRIGGER un_match_deux_equipes_coherence on joue;
-DROP TRIGGER calcul_score_equipe on but;

@@ -1,0 +1,4 @@
+Limitations
+
+Pas de CASCADE / RESTRICT constraints 
+Pas de contrôle d'heures
